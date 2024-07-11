@@ -11,7 +11,14 @@
 
 <script>
 export default {
-
+  data () {
+    return {
+      menu: {
+        all: '全部',
+        good: '精华'
+      }
+    }
+  },
 }
 </script>
 
