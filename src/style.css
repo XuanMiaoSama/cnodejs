@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: auto;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+input,
+button {
+  border: 0;
+  outline: none;
+}
+
+img {
+  vertical-align: bottom;
+}
+main {
+  background: #e1e1e1;
+}
+
+main .main {
+  width: 1150px;
+  margin: 0 auto;
+  padding: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  min-height: 400px;
+}
+
+.main .section {
+  width: 900px;
+  margin-right: 16px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.main .aside {
+  width: 330px;
+  border-radius: 3px;
+  overflow: hidden;
+}
