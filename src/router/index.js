@@ -75,13 +75,24 @@ export const routes = [
     isNav: true
   },
   {
-    path: "/detail",
+    path: "/detail/:id",
     name: "detail",
     components: {
       default: () => import("../views/detail.vue")
     },
     meta: {
       title: "详情"
+    },
+    isNav: false
+  },
+  {
+    path: "/author/:name",
+    name: "author",
+    components: {
+      default: () => import("../views/author.vue")
+    },
+    meta: {
+      title: "作者"
     },
     isNav: false
   }

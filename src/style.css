@@ -31,6 +31,7 @@ img {
 }
 main {
   background: #e1e1e1;
+  min-height: 400px;
 }
 
 main .main {
@@ -39,7 +40,6 @@ main .main {
   padding: 15px 0;
   display: flex;
   justify-content: space-between;
-  min-height: 400px;
 }
 
 .main .section {

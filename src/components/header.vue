@@ -34,11 +34,12 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .header {
   height: 50px;
   background: #444;
 }
+
 .header .center {
   height: 100%;
   width: 1150px;

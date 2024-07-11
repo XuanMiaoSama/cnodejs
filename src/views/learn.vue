@@ -1,15 +1,17 @@
 <template>
-	<div>
+	<div class="learn">
+		<Title>
+			<template #default>
 
+			</template>
+		</Title>
 	</div>
 </template>
 
 <script>
-	export default {
-		
-	}
+export default {
+
+}
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
