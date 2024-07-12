@@ -3,14 +3,16 @@
     <Title>
       <template #default>
         <ul class="menu">
-          <li @click="tab = key" v-for="(item, key) in menu" :key="key" :class="{ active: key == tab }">
+          <li @click="tab = key" v-for="(item, key) in menu" :key="key"
+              :class="{ active: key == tab }">
             {{ item }}
           </li>
         </ul>
       </template>
     </Title>
     <List v-for="item in list" :key="item.id" :info="item"></List>
-    <el-pagination v-model:current-page="page" background layout="prev, pager, next" :page-count="10" />
+    <el-pagination v-model:current-page="page" background layout="prev, pager, next"
+                   :page-count="10" />
   </div>
 </template>
 
@@ -61,6 +63,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+ul,
+li {
+  list-style: none;
+}
+
 .home ::v-deep .el-pagination .el-pager li.is-active {
   background: #80bd01;
 }

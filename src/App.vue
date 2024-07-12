@@ -4,7 +4,13 @@
     <main>
       <div class="main">
         <div class="section">
-          <router-view></router-view>
+          <router-view>
+            <template #default="{ Component }">
+              <keep-alive exclude="detail">
+                <component :is="Component" />
+              </keep-alive>
+            </template>
+          </router-view>
         </div>
         <div class="aside"></div>
       </div>
@@ -30,7 +36,7 @@ export default {
 </script>
 
 <style scoped>
-.aside{
+.aside {
   background: blue;
 }
 </style>

@@ -1,15 +1,34 @@
 <template>
-	<div>
+	<div class="register">
+		<Title class="title">
+			<router-link to="/home">
+				主页
+			</router-link>
+			/<span>登录</span>
+		</Title>
+		<el-form ref="registerFormRef" :model="registerForm" :rules="rules"
+						 label-width="auto">
 
+		</el-form>
 	</div>
 </template>
 
 <script>
-	export default {
-		
-	}
+export default {
+	data () {
+		return {
+			registerForm: {
+				username: '',
+				password: '',
+
+			}
+		}
+	},
+}
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+.register {
+	background-color: #fff;
+}
 </style>

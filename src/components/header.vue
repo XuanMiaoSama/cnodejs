@@ -6,7 +6,8 @@
           <img src="https://static2.cnodejs.org/public/images/cnodejs_light.svg" alt="">
         </router-link>
         <input type="text" name="" id="">
-        <img src="https://static2.cnodejs.org/public/images/search.e53b380a.hashed.png" alt="" class="search">
+        <img src="https://static2.cnodejs.org/public/images/search.e53b380a.hashed.png"
+             alt="" class="search">
       </div>
       <ul class="right">
         <li v-for="item in routes">
@@ -35,6 +36,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+ul,
+li {
+  list-style: none;
+}
+
 .header {
   height: 50px;
   background: #444;

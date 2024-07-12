@@ -9,11 +9,11 @@ body {
   overflow: auto;
 }
 
-ul,
+/* ul,
 ol,
 li {
   list-style: none;
-}
+} */
 
 a {
   text-decoration: none;
@@ -53,4 +53,64 @@ main .main {
   width: 330px;
   border-radius: 3px;
   overflow: hidden;
+}
+
+/* markdown文章 */
+.markdown-text {
+  font-size: 16px;
+}
+
+.markdown-text p {
+  font-size: 16px;
+  line-height: 24px;
+  color: #333333;
+  margin: 10px 0px;
+  word-break: break-all;
+}
+
+.markdown-text h1,
+.markdown-text h2,
+.markdown-text h3 {
+  margin-top: 30px;
+  border-bottom: 1px solid #eeeeee;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.markdown-text h3 {
+  font-size: 24px;
+}
+
+.markdown-text .prettyprint {
+  padding: 2px 20px;
+  background-color: #f7f7f7;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.markdown-text code {
+  line-height: 24px;
+}
+
+.markdown-text a {
+  color: #0097de;
+}
+
+.markdown-text img {
+  max-width: 790px;
+}
+
+.markdown-text ul,
+.markdown-text ol,
+.markdown-text li {
+  font-size: 14px;
+}
+
+.markdown-text ul {
+  padding-left: 25px;
+  margin-bottom: 10px;
+}
+
+.markdown-text li {
+  line-height: 26px;
 }
