@@ -6,16 +6,19 @@
 				<h2>{{ detail.title }}</h2>
 			</div>
 			<p class="info">
-				<span class="point"> ● </span>发布于 {{ diff(detail.create_at) }}<span class="point">
-					● </span>作者 {{
-						detail?.author?.loginname }}<span class="point"> ● </span>{{ detail.visit_count
-				}} 次浏览<span class="point"> ● </span>来自 {{ cat[detail.tab] }}
+				<span class="point">●</span>发布于 {{ diff(detail.create_at) }}
+				<span class="point">●</span>作者 {{ detail?.author?.loginname }}
+				<span class="point">●</span>{{ detail.visit_count }} 次浏览
+				<span class="point">●</span>来自 {{ cat[detail.tab] }}
 			</p>
 			<div v-if="user?.token">
 				<el-button type="success" class="btn" v-if="!detail.is_collect"
-									 @click="star('collect')">收藏</el-button>
-				<el-button type="info" class="btn" v-else plain
-									 @click="star('de_collect')">取消收藏</el-button>
+									 @click="star('collect')">
+					收藏
+				</el-button>
+				<el-button type="info" class="btn" v-else plain @click="star('de_collect')">
+					取消收藏
+				</el-button>
 			</div>
 		</div>
 		<div class="content" v-html="detail.content"></div>
@@ -29,17 +32,22 @@
 				</div>
 				<div class="right">
 					<p class="link">
-						<router-link :to="'/author/' + reply?.author?.loginname" class="name">{{
-							reply?.author?.loginname }}</router-link>
-						<a href="#" class="time">{{ index + 1 }}楼<span class="point">●</span>{{
-							diff(reply.create_at) }}</a>
+						<router-link :to="'/author/' + reply?.author?.loginname" class="name">
+							{{ reply?.author?.loginname }}
+						</router-link>
+						<a href="#" class="time">
+							{{ index + 1 }}楼
+							<span class="point">●</span>
+							{{ diff(reply.create_at) }}
+						</a>
 					<p class="icon" v-if="user?.token">
 						<el-icon class="like" :color="reply.is_uped ? 'black' : ''"
 										 @click="like(reply.id)">
 							<StarFilled />
 						</el-icon>
-						<span class="likeNum" v-if="reply?.ups.length > 0">{{ reply?.ups.length
-							}}</span>
+						<span class="likeNum" v-if="reply?.ups.length > 0">
+							{{ reply?.ups.length }}
+						</span>
 						<el-icon class="comment">
 							<Comment />
 						</el-icon>
