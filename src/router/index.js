@@ -20,6 +20,18 @@ export const routes = [
     isNav: true
   },
   {
+    path: "/msg",
+    name: "msg",
+    components: {
+      default: () => import("../views/msg.vue")
+    },
+    meta: {
+      title: "未读消息"
+    },
+    isNav: true,
+    isShow: "login"
+  },
+  {
     path: "/learn",
     name: "learn",
     components: {
@@ -61,7 +73,8 @@ export const routes = [
     meta: {
       title: "注册"
     },
-    isNav: true
+    isNav: true,
+    isShow: "noLogin"
   },
   {
     path: "/login",
@@ -72,7 +85,8 @@ export const routes = [
     meta: {
       title: "登录"
     },
-    isNav: true
+    isNav: true,
+    isShow: "noLogin"
   },
   {
     path: "/detail/:id",
@@ -95,6 +109,18 @@ export const routes = [
       title: "作者"
     },
     isNav: false
+  },
+  {
+    path: "/setting",
+    name: "setting",
+    components: {
+      default: () => import("../views/setting.vue")
+    },
+    meta: {
+      title: "设置"
+    },
+    isNav: true,
+    isShow: "login"
   }
 ];
 

@@ -1,10 +1,10 @@
 <template>
 	<div class="register">
-		<Title class="title">
+		<Title class="Title">
 			<router-link to="/home">
 				主页
 			</router-link>
-			/<span>登录</span>
+			/<span>注册</span>
 		</Title>
 		<el-form ref="registerFormRef" :model="registerForm" :rules="rules"
 						 label-width="auto">

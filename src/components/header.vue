@@ -11,9 +11,17 @@
       </div>
       <ul class="right">
         <li v-for="item in routes">
-          <router-link :to="item.path">
+          <el-badge :value="count" class="item" v-if="item.name === 'msg' && count > 0">
+            <router-link :to="item.path">
+              {{ item.meta.title }}
+            </router-link>
+          </el-badge>
+          <router-link :to="item.path" v-else>
             {{ item.meta.title }}
           </router-link>
+        </li>
+        <li>
+          <a href="javascript:;" v-if="isLogin" @click="exit()">退出</a>
         </li>
       </ul>
     </div>
@@ -21,17 +29,50 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { routes } from '../router/index.js'
 export default {
   created () {
-    console.log(this.$route)
-    console.log(this.routes)
+    // console.log(this.$route)
+    // console.log(this.routes)
+    this.isLogin = localStorage.getItem('user') ? true : false
+    if (this.isLogin) {
+      this.routes = this.routes.filter(item => {
+        return item.isShow !== 'noLogin'
+      })
+    } else {
+      this.routes = this.routes.filter(item => {
+        return item.isShow !== 'login'
+      })
+    }
+    this.getCount()
   },
   data () {
     return {
-      routes: routes.filter(item => item.isNav)
+      routes: routes.filter(item => item.isNav),
+      isLogin: false,
+      count: 0,
+      user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : {}
     }
   },
+  methods: {
+    exit () {
+      localStorage.removeItem('user')
+      this.$router.go(0)
+    },
+    getCount () {
+      axios({
+        url: `https://cnodejs.org/api/v1/message/count`,
+        method: 'get',
+        params: {
+          accesstoken: this.user?.token
+        }
+      }).then(res => {
+        // console.log(res.data.data, 'msgCount')
+        this.count = res.data.data
+      })
+    }
+  }
 }
 </script>
 

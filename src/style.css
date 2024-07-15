@@ -18,6 +18,7 @@ li {
 a {
   text-decoration: none;
   color: #000;
+  cursor: pointer;
 }
 
 input,
@@ -113,4 +114,23 @@ main .main {
 
 .markdown-text li {
   line-height: 26px;
+}
+
+.Title {
+  font-size: 14px;
+  color: #ded2cc;
+
+  a {
+    color: #80bd01;
+    margin-right: 5px;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  span {
+    color: #999999;
+    margin-left: 10px;
+  }
 }

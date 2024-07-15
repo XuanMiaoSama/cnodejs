@@ -24,13 +24,15 @@
 		<div class="content" v-html="detail.content"></div>
 	</div>
 	<div class="replies">
-		<Title><span class="count">{{ detail?.replies?.length }} 回复</span></Title>
+		<Title><span class="count">{{ replies?.length }} 回复</span></Title>
 		<ul>
-			<li v-for="(reply, index) in detail.replies" class="reply">
+			<li v-for="(reply, index) in replies" class="reply"
+					:style="{ background: reply.ups.length >= 3 ? '#f4fcf0' : '' }">
 				<div class="left">
 					<Avatar :author="reply.author"></Avatar>
 				</div>
-				<div class="right">
+				<div class="right" @mouseover="reply.isShow = true"
+						 @mouseout="reply.isShow = false">
 					<p class="link">
 						<router-link :to="'/author/' + reply?.author?.loginname" class="name">
 							{{ reply?.author?.loginname }}
@@ -42,21 +44,36 @@
 						</a>
 					<p class="icon" v-if="user?.token">
 						<el-icon class="like" :color="reply.is_uped ? 'black' : ''"
-										 @click="like(reply.id)">
+										 @click="like(reply.id)" v-if="reply.isShow || reply?.ups.length > 0">
 							<StarFilled />
 						</el-icon>
 						<span class="likeNum" v-if="reply?.ups.length > 0">
 							{{ reply?.ups.length }}
 						</span>
-						<el-icon class="comment">
+						<el-icon class="comment" @click="reply.isOpen = !reply.isOpen">
 							<Comment />
 						</el-icon>
 					</p>
 					</p>
 					<p class="replyText" v-html="reply.content"></p>
+					<div class="edit" :style="{ height: reply.isOpen ? '450px' : '0px' }">
+						<div v-html="reply?.value"></div>
+						<Editor :id="reply.id" :name="reply.author.loginname" @change="editChange">
+						</Editor>
+						<el-button type="primary" style="margin-top: 10px;"
+											 @click="replyComment(reply.id, reply.value)">提交</el-button>
+					</div>
 				</div>
 			</li>
 		</ul>
+	</div>
+	<div class="topicComment" v-if="user?.token">
+		<Title>添加回复</Title>
+		<div class="editTopic">
+			<Editor @change="commentValue = $event.value"></Editor>
+			<el-button type="primary" style="margin-top: 10px;"
+								 @click="replyTopic()">提交</el-button>
+		</div>
 	</div>
 </template>
 
@@ -67,10 +84,17 @@ import { diffTime } from '../utils/time'
 import avatar from './../components/avatar.vue'
 import cat from '../utils/cat'
 export default {
+	watch: {
+		commentValue () {
+			console.log(this.commentValue)
+		}
+	},
 	name: 'detail',
 	components: { avatar },
 	data () {
 		return {
+			commentValue: '',
+			replies: [],
 			detail: {},
 			cat,
 			user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : {}
@@ -80,6 +104,41 @@ export default {
 		this.getDetail()
 	},
 	methods: {
+		replyComment (id, value) {
+			axios({
+				url: ` https://cnodejs.org/api/v1/topic/${this.$route.params.id}/replies`,
+				method: 'post',
+				data: {
+					accesstoken: this.user?.token,
+					content: value,
+					reply_id: id
+				}
+			}).then(res => {
+				// console.log(res)
+				this.getDetail()
+			})
+		},
+		replyTopic () {
+			axios({
+				url: ` https://cnodejs.org/api/v1/topic/${this.$route.params.id}/replies`,
+				method: 'post',
+				data: {
+					accesstoken: this.user?.token,
+					content: this.commentValue,
+				}
+			}).then(res => {
+				console.log(res)
+				this.getDetail()
+			})
+		},
+		editChange (obj) {
+			console.log(obj)
+			this.replies.forEach((item) => {
+				if (obj.id === item.id) {
+					item.value = obj.value
+				}
+			})
+		},
 		like (id) {
 			axios({
 				url: 'https://cnodejs.org/api/v1/reply/' + id + '/ups',
@@ -153,6 +212,12 @@ export default {
 			}).then((res) => {
 				console.log(res.data.data)
 				this.detail = res.data.data
+				this.replies = res.data.data.replies.map((item) => {
+					item.isOpen = false
+					item.isShow = false
+					return item
+				})
+				console.log(res.data.data.replies)
 			})
 		},
 		diff (time) {
@@ -163,6 +228,23 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.topicComment {
+	background: #fff;
+	padding-bottom: 20px;
+	margin-top: 15px;
+	border-radius: 3px;
+
+	.editTopic {
+		padding: 0 10px;
+		margin-top: 10px;
+	}
+}
+
+.edit {
+	transition: .3s;
+	overflow: hidden
+}
+
 .detail {
 	background: #fff;
 	border-radius: 3px;
@@ -225,6 +307,8 @@ export default {
 		}
 
 		.right {
+			max-width: 760px;
+
 			.link {
 				font-size: 12px;
 				position: relative;

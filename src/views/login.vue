@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <Title class="title">
+    <Title class="Title">
       <router-link to="/home">
         主页
       </router-link>
@@ -42,7 +42,8 @@ export default {
               showClose: true,
               onClose: () => {
                 localStorage.setItem('user', JSON.stringify(res.data))
-                this.$router.push('/home')
+                // this.$router.push('/home')
+                window.location.href = '/home'
               }
             })
           } else {
@@ -81,25 +82,6 @@ export default {
 .login {
   background: #fff;
   overflow: hidden;
-
-  .title {
-    font-size: 14px;
-    color: #ded2cc;
-
-    a {
-      color: #80bd01;
-      margin-right: 5px;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    span {
-      color: #999999;
-      margin-left: 10px;
-    }
-  }
 
   .ruleForm {
     margin: 20px auto;

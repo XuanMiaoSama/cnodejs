@@ -16,7 +16,9 @@ export default {};
 	height: 40px;
 	background: #f6f6f6;
 	padding-left: 10px;
-	border-radius: 3px;
+	// border-radius: 3px;
 	overflow: hidden;
+	font-size: 14px;
+	color: #444444;
 }
 </style>

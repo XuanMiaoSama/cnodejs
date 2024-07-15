@@ -45,7 +45,7 @@ export default {
           limit: this.limit
         }
       }).then(res => {
-        console.log(res.data.data);
+        // console.log(res.data.data);
         this.list = res.data.data;
       });
     }
