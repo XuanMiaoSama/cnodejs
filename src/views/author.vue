@@ -20,7 +20,7 @@
             @{{ author.githubUsername }}
           </a>
         </p>
-        <span>注册时间 {{ time(author.create_at) }}</span>
+        <span>注册时间 {{ diff(author.create_at) }}</span>
       </div>
     </div>
     <div class="createTopic"></div>
@@ -36,6 +36,10 @@ import axios from 'axios';
 import { diffTime } from '../utils/time.js'
 
 export default {
+  created () {
+    this.getAuthor();
+    this.getCollect()
+  },
   data () {
     return {
       author: {},
@@ -49,6 +53,7 @@ export default {
         method: 'get',
       }).then(res => {
         this.author = res.data.data
+        console.log(this.author)
       })
     },
     getCollect () {
@@ -66,4 +71,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.info {
+  background: #fff;
+}
+</style>

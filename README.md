@@ -1,7 +1,6 @@
 # 关于项目
 
-本项目是使用 vue 对 cnodejs 的仿写
-本项目为第一次 vue 项目，有很多不足
+本项目是使用 vue 对 cnodejs 的不完全仿写练习，主要使用的是Vue3选项式API+vue2的语法
 
 # Vue 3 + Vite
 

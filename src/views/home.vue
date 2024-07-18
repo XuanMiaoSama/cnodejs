@@ -19,9 +19,13 @@
 <script>
 import axios from "axios";
 import cat from "../utils/cat";
+import Test from "../components/test.vue";
 
 
 export default {
+  components: {
+    Test,
+  },
   watch: {
     tab () {
       this.page = 1
